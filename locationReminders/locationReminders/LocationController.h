@@ -10,7 +10,7 @@
 
 @import CoreLocation;
 
-@protocol LocaitonControllerDelegate <NSObject>
+@protocol LocationControllerDelegate <NSObject>
 
 - (void)locationControllerDidUpdateLocation:(CLLocation *)location;
 
@@ -23,5 +23,6 @@
 
 @property(weak, nonatomic) id delegate;
 
++ (LocationController *)sharedController;
 
 @end

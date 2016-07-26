@@ -21,6 +21,10 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bgs-7s-M70">
                                 <rect key="frame" x="20" y="60" width="560" height="480"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="wPT-ZV-210" appends="YES" id="k60-Yo-HPR"/>
+                                </connections>
                             </mapView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="XG6-91-475">
                                 <rect key="frame" x="20" y="562" width="560" height="30"/>
@@ -63,11 +67,35 @@
                     <navigationItem key="navigationItem" id="OrF-bj-5R9"/>
                     <connections>
                         <outlet property="mapView" destination="bgs-7s-M70" id="brH-Sk-0yN"/>
+                        <segue destination="Hae-zQ-Cap" kind="show" id="V9A-lT-ssr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="wPT-ZV-210">
+                    <connections>
+                        <action selector="handleLongPress:" destination="BYZ-38-t0r" id="fID-yg-ZHC"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1100" y="394"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="Hq6-QQ-SbW">
+            <objects>
+                <viewController id="Hae-zQ-Cap" customClass="DetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bu8-Sf-MZU"/>
+                        <viewControllerLayoutGuide type="bottom" id="nNe-F2-PHS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uSb-xX-lKc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gne-aP-bwM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1803" y="394"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GRc-7G-W9c">

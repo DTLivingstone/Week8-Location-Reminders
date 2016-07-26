@@ -8,10 +8,6 @@
 
 #import "LocationController.h"
 
-//@protocol LocationControllerDelegate <NSObject>
-//
-//- (void)locationControllerDidUpdateLocation:(CLLocation *)location;
-
 @interface LocationController ()<CLLocationManagerDelegate>
 
 @end
