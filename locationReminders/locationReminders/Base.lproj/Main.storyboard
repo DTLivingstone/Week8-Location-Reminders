@@ -22,26 +22,26 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bgs-7s-M70">
                                 <rect key="frame" x="20" y="60" width="560" height="480"/>
                             </mapView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="XG6-91-475">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="XG6-91-475">
                                 <rect key="frame" x="20" y="562" width="560" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAO-Cw-Rzt">
-                                        <rect key="frame" x="0.0" y="0.0" width="183" height="30"/>
-                                        <state key="normal" title="Location 1"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAO-Cw-Rzt">
+                                        <rect key="frame" x="0.0" y="0.0" width="187" height="30"/>
+                                        <state key="normal" title="Weed"/>
                                         <connections>
                                             <action selector="firstLocationButtonPresssed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XG6-PK-lCF"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oju-Tp-41W">
-                                        <rect key="frame" x="183" y="0.0" width="189" height="30"/>
-                                        <state key="normal" title="Location 2"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oju-Tp-41W">
+                                        <rect key="frame" x="187" y="0.0" width="186" height="30"/>
+                                        <state key="normal" title="Sandwich"/>
                                         <connections>
                                             <action selector="secondLocationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xom-fA-GWQ"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oB-m3-7xU">
-                                        <rect key="frame" x="372" y="0.0" width="188" height="30"/>
-                                        <state key="normal" title="Location 3"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oB-m3-7xU">
+                                        <rect key="frame" x="373" y="0.0" width="187" height="30"/>
+                                        <state key="normal" title="Okay"/>
                                         <connections>
                                             <action selector="thirdLocationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W9Y-ZF-3Fo"/>
                                         </connections>
@@ -55,9 +55,9 @@
                             <constraint firstItem="bgs-7s-M70" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.8" id="FA4-JO-ZDU"/>
                             <constraint firstItem="XG6-91-475" firstAttribute="width" secondItem="bgs-7s-M70" secondAttribute="width" id="Xvq-sA-CMy"/>
                             <constraint firstItem="bgs-7s-M70" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ZiQ-LI-0cO"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XG6-91-475" secondAttribute="bottom" constant="8" id="a3U-Wm-tab"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bgs-7s-M70" secondAttribute="trailing" id="ezp-jM-QLR"/>
                             <constraint firstItem="bgs-7s-M70" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hQg-NI-eVL"/>
+                            <constraint firstItem="XG6-91-475" firstAttribute="top" secondItem="bgs-7s-M70" secondAttribute="bottom" constant="22" id="uoE-sh-sY6"/>
                         </constraints>
                     </view>
                     <connections>

@@ -58,24 +58,24 @@
 
 - (IBAction)firstLocationButtonPresssed:(UIButton *)sender {
     
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(53, -126);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 153000.0, 153000.0);
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(41.422650, -122.386127);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 15100.0, 15100.0);
     
     [self.mapView setRegion:region animated:YES];
 }
 
 - (IBAction)secondLocationButtonPressed:(UIButton *)sender {
     
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(48, -123);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 153000.0, 153000.0);
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(41.758961, -70.493932);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 6000.0, 6000.0);
     
     [self.mapView setRegion:region animated:YES];
 }
 
 - (IBAction)thirdLocationButtonPressed:(UIButton *)sender {
     
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(49, -113);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 153000.0, 153000.0);
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(35.850655, -95.318298);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 1530.0, 1530.0);
     
     [self.mapView setRegion:region animated:YES];
 }
