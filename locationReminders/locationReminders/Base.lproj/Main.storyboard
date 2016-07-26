@@ -67,7 +67,7 @@
                     <navigationItem key="navigationItem" id="OrF-bj-5R9"/>
                     <connections>
                         <outlet property="mapView" destination="bgs-7s-M70" id="brH-Sk-0yN"/>
-                        <segue destination="Hae-zQ-Cap" kind="show" id="V9A-lT-ssr"/>
+                        <segue destination="Hae-zQ-Cap" kind="show" identifier="DetailViewController" id="V9A-lT-ssr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

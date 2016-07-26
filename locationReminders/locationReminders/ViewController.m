@@ -97,7 +97,8 @@
         MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
         newPoint.coordinate = touchMapCoordinate;
         
-        newPoint.title = @"new Location";
+        newPoint.title = @"New Location";
+        newPoint.subtitle = @"This is where you long-pressed";
         
         [self.mapView addAnnotation:newPoint];
     }
@@ -109,7 +110,7 @@
 
 #pragma MARK MapViewDelegate
 
--(MKAnnotationView *)mapView:(MKMapView *)mapView fiewForAnnotation:(id<MKAnnotation>)annotation {
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
@@ -133,7 +134,6 @@
     if ([segue.identifier isEqualToString:@"DetailViewController"]) {
         if ([sender isKindOfClass:[MKPinAnnotationView class]]) {
             MKAnnotationView *annotationView = (MKAnnotationView *)sender;
-            
             
             DetailViewController *detailViewController = (DetailViewController *)segue.destinationViewController;
             
