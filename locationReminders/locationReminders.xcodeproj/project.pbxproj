@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63A0FE921D47CE050013662E /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A0FE911D47CE050013662E /* LocationController.m */; };
 		63AD43891D468336008EC9B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AD43881D468336008EC9B1 /* main.m */; };
 		63AD438C1D468337008EC9B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AD438B1D468337008EC9B1 /* AppDelegate.m */; };
 		63AD438F1D468337008EC9B1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AD438E1D468337008EC9B1 /* ViewController.m */; };
@@ -36,6 +37,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		63A0FE901D47CE050013662E /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
+		63A0FE911D47CE050013662E /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 		63AD43841D468336008EC9B1 /* locationReminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = locationReminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63AD43881D468336008EC9B1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		63AD438A1D468336008EC9B1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -98,6 +101,8 @@
 				63AD439B1D468337008EC9B1 /* Info.plist */,
 				63AD43931D468337008EC9B1 /* locationReminders.xcdatamodeld */,
 				63AD43871D468336008EC9B1 /* Supporting Files */,
+				63A0FE901D47CE050013662E /* LocationController.h */,
+				63A0FE911D47CE050013662E /* LocationController.m */,
 			);
 			path = locationReminders;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63A0FE921D47CE050013662E /* LocationController.m in Sources */,
 				63AD43951D468337008EC9B1 /* locationReminders.xcdatamodeld in Sources */,
 				63AD438F1D468337008EC9B1 /* ViewController.m in Sources */,
 				63AD438C1D468337008EC9B1 /* AppDelegate.m in Sources */,
@@ -348,6 +354,7 @@
 				63AD43A01D468337008EC9B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
