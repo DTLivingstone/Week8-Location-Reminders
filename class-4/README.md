@@ -1,5 +1,6 @@
 #Week 7 - Class 4
 ##Lab Assignment
+* Modify your LocationController to monitor regions  
 * Use Region monitoring and schedule a location based reminder in the AddReminderDetailViewController
 * Add local notifications when the user enters a region
 * Upon creation of your reminder, upload to ParseServer.
