@@ -11,8 +11,6 @@
 #import "LocationController.h"
 #import "DetailViewController.h"
 
-
-
 @import MapKit;
 
 @interface ViewController ()<MKMapViewDelegate, LocationControllerDelegate>
@@ -50,34 +48,21 @@
 //        }
 //    }];
     
-    NSArray *spaceship = @[@"foo", @12.3, @213.2];
-    NSArray *garage = @[@"foo", @12.3, @213.2];
-    NSArray *moscone = @[@"foo", @12.3, @213.2];
-    NSArray *bill_graham = @[@"foo", @12.3, @213.2];
-    NSArray *hq = @[@"foo", @12.3, @213.2];
+//    NSArray *spaceship = @[@"foo", @12.3, @213.2];
+//    NSArray *garage = @[@"foo", @12.3, @213.2];
+//    NSArray *moscone = @[@"foo", @12.3, @213.2];
+//    NSArray *bill_graham = @[@"foo", @12.3, @213.2];
+//    NSArray *hq = @[@"foo", @12.3, @213.2];
+//    
+//    NSMutableArray *preloadedAnnotations;
+//    
+//    [preloadedAnnotations addObject:spaceship];
+//    [preloadedAnnotations addObject:garage];
+//    [preloadedAnnotations addObject:moscone];
+//    [preloadedAnnotations addObject:bill_graham];
+//    [preloadedAnnotations addObject:hq];
     
-    NSMutableArray *preloadedAnnotations;
-    
-    [preloadedAnnotations addObject:spaceship];
-    [preloadedAnnotations addObject:garage];
-    [preloadedAnnotations addObject:moscone];
-    [preloadedAnnotations addObject:bill_graham];
-    [preloadedAnnotations addObject:hq];
-
-//    for (id foo in meh) {
-//        NSLog(@"%@", foo);
-//        NSLog(@"foo");
-//    }
-    
-    NSLog(@"carrots");
-
-    
-//    [preloadedAnnotations enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        NSLog(@"%@", preloadedAnnotations[idx]);
-//        NSLog(@"carrots");
-//
-//    }];
-    
+    // eww
     
     CLLocationCoordinate2D coordinate0 = CLLocationCoordinate2DMake(41.5, -70.492);
     CLLocationCoordinate2D coordinate1 = CLLocationCoordinate2DMake(41.4, -70.493);
@@ -110,8 +95,6 @@
     [self.mapView addAnnotation:newPoint4];
 }
 
-
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     
@@ -120,8 +103,32 @@
     [[[LocationController sharedController]locationManager]startUpdatingLocation];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+
+- (MKPinAnnotationView *)colorRandomizer:(MKPinAnnotationView *)point {
+    point.animatesDrop = YES;
+    
+    switch (arc4random_uniform(5)) {
+        case 0: // green
+            point.pinTintColor = [UIColor colorWithRed:0.796  green:0.904  blue:0.134 alpha:1];
+            break;
+        case 1: // blue
+            point.pinTintColor = [UIColor colorWithRed:0.244  green:0.613  blue:0.827 alpha:1];
+            break;
+        case 2: // purple
+            point.pinTintColor = [UIColor colorWithRed:0.634  green:0.379  blue:0.664 alpha:1];
+            break;
+        case 3: // pink
+            point.pinTintColor = [UIColor colorWithRed:0.889  green:0.286  blue:0.600 alpha:1];
+            break;
+        default: // dark blue
+            point.pinTintColor = [UIColor colorWithRed:0.098  green:0.359  blue:0.602 alpha:1];
+    }
+    
+    return point;
+}
+
+- (void)locationControllerDidUpdateLocation:(CLLocation *)location {
+    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 500.0, 500.0) animated:YES];
 }
 
 - (IBAction)firstLocationButtonPresssed:(UIButton *)sender {
@@ -161,17 +168,8 @@
         newPoint.title = @"New Location";
         newPoint.subtitle = @"This is where you long-pressed";
         
-        //
-        
-        
-        //
-        
         [self.mapView addAnnotation:newPoint];
     }
-}
-
-- (void)locationControllerDidUpdateLocation:(CLLocation *)location {
-    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 500.0, 500.0) animated:YES];
 }
 
 #pragma MARK MapViewDelegate
@@ -189,30 +187,11 @@
     
     annotationView.canShowCallout = YES;
     
-    // factor this out
-    
-    switch (arc4random_uniform(6)) {
-        case 1: // green
-            annotationView.pinTintColor = [UIColor colorWithRed:0.796  green:0.904  blue:0.134 alpha:1];
-            break;
-        case 2: // blue
-            annotationView.pinTintColor = [UIColor colorWithRed:0.244  green:0.613  blue:0.827 alpha:1];
-            break;
-        case 3: // purple
-            annotationView.pinTintColor = [UIColor colorWithRed:0.634  green:0.379  blue:0.664 alpha:1];
-            break;
-        case 4: // pink
-            annotationView.pinTintColor = [UIColor colorWithRed:0.889  green:0.286  blue:0.600 alpha:1];
-            break;
-        default: // dark blue
-            annotationView.pinTintColor = [UIColor colorWithRed:0.098  green:0.359  blue:0.602 alpha:1];
-    }
-    
-    //
-    
     UIButton *rightCalloutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     
     annotationView.rightCalloutAccessoryView = rightCalloutButton;
+    
+    annotationView = [self colorRandomizer:annotationView];
     
     return annotationView;
 }
