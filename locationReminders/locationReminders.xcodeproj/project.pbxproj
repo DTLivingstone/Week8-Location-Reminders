@@ -98,16 +98,16 @@
 				63AD438B1D468337008EC9B1 /* AppDelegate.m */,
 				63AD438D1D468337008EC9B1 /* ViewController.h */,
 				63AD438E1D468337008EC9B1 /* ViewController.m */,
-				63AD43901D468337008EC9B1 /* Main.storyboard */,
 				63A0FE931D47E02A0013662E /* DetailViewController.h */,
 				63A0FE941D47E02A0013662E /* DetailViewController.m */,
+				63A0FE901D47CE050013662E /* LocationController.h */,
+				63A0FE911D47CE050013662E /* LocationController.m */,
 				63AD43961D468337008EC9B1 /* Assets.xcassets */,
+				63AD43901D468337008EC9B1 /* Main.storyboard */,
 				63AD43981D468337008EC9B1 /* LaunchScreen.storyboard */,
 				63AD439B1D468337008EC9B1 /* Info.plist */,
 				63AD43931D468337008EC9B1 /* locationReminders.xcdatamodeld */,
 				63AD43871D468336008EC9B1 /* Supporting Files */,
-				63A0FE901D47CE050013662E /* LocationController.h */,
-				63A0FE911D47CE050013662E /* LocationController.m */,
 			);
 			path = locationReminders;
 			sourceTree = "<group>";
