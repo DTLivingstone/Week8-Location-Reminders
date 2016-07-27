@@ -8,14 +8,17 @@
 
 #import "ViewController.h"
 #import <Parse/Parse.h>
+#import "LocationController.h"
+#import "DetailViewController.h"
+#import "AnagramFinder.h"
 
 @import MapKit;
 
-@interface ViewController ()
-
-@property(strong, nonatomic) CLLocationManager *locationManager;
+@interface ViewController ()<MKMapViewDelegate, LocationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
+- (IBAction)handleLongPress:(UILongPressGestureRecognizer *)sender;
 
 @end
 
@@ -24,36 +27,112 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    
-    testObject[@"foo"] = @"bar";
-    
-    [testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        NSLog(@"Succeeded: %i, Error: %@", succeeded, error);
-    }];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (!error) {
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                NSLog(@"Objects: %@", objects);
-            }];
-        }
-    }];
-    
-    [self requestPermissions];
     [self.mapView.layer setCornerRadius:20.0];
+    [self.mapView setDelegate: self];
+    [self.mapView setShowsUserLocation:YES];
+    
+//    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+//    
+//    testObject[@"foo"] = @"bar";
+//    
+//    [testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//        NSLog(@"Succeeded: %i, Error: %@", succeeded, error);
+//    }];
+//    
+//    PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
+//    
+//    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+//        if (!error) {
+//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                NSLog(@"Objects: %@", objects);
+//            }];
+//        }
+//    }];
+    
+//    NSArray *spaceship = @[@"foo", @12.3, @213.2];
+//    NSArray *garage = @[@"foo", @12.3, @213.2];
+//    NSArray *moscone = @[@"foo", @12.3, @213.2];
+//    NSArray *bill_graham = @[@"foo", @12.3, @213.2];
+//    NSArray *hq = @[@"foo", @12.3, @213.2];
+//    
+//    NSMutableArray *preloadedAnnotations;
+//    
+//    [preloadedAnnotations addObject:spaceship];
+//    [preloadedAnnotations addObject:garage];
+//    [preloadedAnnotations addObject:moscone];
+//    [preloadedAnnotations addObject:bill_graham];
+//    [preloadedAnnotations addObject:hq];
+    
+    CLLocationCoordinate2D coordinate0 = CLLocationCoordinate2DMake(41.5, -70.492);
+    CLLocationCoordinate2D coordinate1 = CLLocationCoordinate2DMake(41.4, -70.493);
+    CLLocationCoordinate2D coordinate2 = CLLocationCoordinate2DMake(41.6, -70.494);
+    CLLocationCoordinate2D coordinate3 = CLLocationCoordinate2DMake(41.8, -70.495);
+    CLLocationCoordinate2D coordinate4 = CLLocationCoordinate2DMake(41.2, -70.496);
+
+    MKPointAnnotation *newPoint0 = [[MKPointAnnotation alloc]init];
+    MKPointAnnotation *newPoint1 = [[MKPointAnnotation alloc]init];
+    MKPointAnnotation *newPoint2 = [[MKPointAnnotation alloc]init];
+    MKPointAnnotation *newPoint3 = [[MKPointAnnotation alloc]init];
+    MKPointAnnotation *newPoint4 = [[MKPointAnnotation alloc]init];
+    
+    newPoint0.title = @"point 0";
+    newPoint1.title = @"point 1";
+    newPoint2.title = @"point 2";
+    newPoint3.title = @"point 3";
+    newPoint4.title = @"point 4";
+    
+    newPoint0.coordinate = coordinate0;
+    newPoint1.coordinate = coordinate1;
+    newPoint2.coordinate = coordinate2;
+    newPoint3.coordinate = coordinate3;
+    newPoint4.coordinate = coordinate4;
+
+    [self.mapView addAnnotation:newPoint0];
+    [self.mapView addAnnotation:newPoint1];
+    [self.mapView addAnnotation:newPoint2];
+    [self.mapView addAnnotation:newPoint3];
+    [self.mapView addAnnotation:newPoint4];
+    
+    AnagramFinder *anagramFinder = [[AnagramFinder alloc]init];
+    [anagramFinder isAnagram:@"break" string2:@"brake"];
+    [anagramFinder isAnagram:@"break" string2:@"smash"];
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
+    [[LocationController sharedController]setDelegate:self];
+    
+    [[[LocationController sharedController]locationManager]startUpdatingLocation];
 }
 
-- (void)requestPermissions {
-    [self setLocationManager:[[CLLocationManager alloc]init]];
-    [self.locationManager requestAlwaysAuthorization];
+
+- (MKPinAnnotationView *)colorRandomizer:(MKPinAnnotationView *)point {
+    point.animatesDrop = YES;
+    
+    switch (arc4random_uniform(5)) {
+        case 0: // green
+            point.pinTintColor = [UIColor colorWithRed:0.796  green:0.904  blue:0.134 alpha:1];
+            break;
+        case 1: // blue
+            point.pinTintColor = [UIColor colorWithRed:0.244  green:0.613  blue:0.827 alpha:1];
+            break;
+        case 2: // purple
+            point.pinTintColor = [UIColor colorWithRed:0.634  green:0.379  blue:0.664 alpha:1];
+            break;
+        case 3: // pink
+            point.pinTintColor = [UIColor colorWithRed:0.889  green:0.286  blue:0.600 alpha:1];
+            break;
+        default: // dark blue
+            point.pinTintColor = [UIColor colorWithRed:0.098  green:0.359  blue:0.602 alpha:1];
+    }
+    
+    return point;
+}
+
+- (void)locationControllerDidUpdateLocation:(CLLocation *)location {
+    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 500.0, 500.0) animated:YES];
 }
 
 - (IBAction)firstLocationButtonPresssed:(UIButton *)sender {
@@ -80,7 +159,62 @@
     [self.mapView setRegion:region animated:YES];
 }
 
+- (IBAction)handleLongPress:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        CGPoint touchPoint = [sender locationInView:self.mapView];
+        
+        CLLocationCoordinate2D touchMapCoordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+        
+        MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
+        newPoint.coordinate = touchMapCoordinate;
+        
+        newPoint.title = @"New Location";
+        newPoint.subtitle = @"This is where you long-pressed";
+        
+        [self.mapView addAnnotation:newPoint];
+    }
+}
 
+#pragma MARK MapViewDelegate
 
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
+    
+    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"annotation"];
+    
+    if (!annotationView) {
+        annotationView = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"annotationView"];
+    }
+    
+    annotationView.canShowCallout = YES;
+    
+    UIButton *rightCalloutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    
+    annotationView.rightCalloutAccessoryView = rightCalloutButton;
+    
+    annotationView = [self colorRandomizer:annotationView];
+    
+    return annotationView;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"DetailViewController"]) {
+        if ([sender isKindOfClass:[MKPinAnnotationView class]]) {
+            MKAnnotationView *annotationView = (MKAnnotationView *)sender;
+            
+            DetailViewController *detailViewController = (DetailViewController *)segue.destinationViewController;
+            
+            detailViewController.annotationTitle = annotationView.annotation.title;
+            detailViewController.coordinate = annotationView.annotation.coordinate;
+        }
+    }
+}
+
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    [self performSegueWithIdentifier:@"DetailViewController" sender:view];
+}
 
 @end
