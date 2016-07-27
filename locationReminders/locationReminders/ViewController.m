@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "LocationController.h"
 #import "DetailViewController.h"
+#import "AnagramFinder.h"
 
 @import MapKit;
 
@@ -62,8 +63,6 @@
 //    [preloadedAnnotations addObject:bill_graham];
 //    [preloadedAnnotations addObject:hq];
     
-    // eww
-    
     CLLocationCoordinate2D coordinate0 = CLLocationCoordinate2DMake(41.5, -70.492);
     CLLocationCoordinate2D coordinate1 = CLLocationCoordinate2DMake(41.4, -70.493);
     CLLocationCoordinate2D coordinate2 = CLLocationCoordinate2DMake(41.6, -70.494);
@@ -93,6 +92,11 @@
     [self.mapView addAnnotation:newPoint2];
     [self.mapView addAnnotation:newPoint3];
     [self.mapView addAnnotation:newPoint4];
+    
+    AnagramFinder *anagramFinder = [[AnagramFinder alloc]init];
+    [anagramFinder isAnagram:@"break" string2:@"brake"];
+    [anagramFinder isAnagram:@"break" string2:@"smash"];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

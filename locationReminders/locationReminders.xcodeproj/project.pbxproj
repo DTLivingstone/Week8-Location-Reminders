@@ -21,6 +21,7 @@
 		63AD43A61D46B292008EC9B1 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63AD43A41D46B292008EC9B1 /* Parse.framework */; };
 		63AD43A81D46B2AD008EC9B1 /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 63AD43A31D46B292008EC9B1 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63AD43A91D46B2AD008EC9B1 /* Parse.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 63AD43A41D46B292008EC9B1 /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63C541771D4908980064C8D7 /* AnagramFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C541761D4908980064C8D7 /* AnagramFinder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,6 +57,8 @@
 		63AD43A11D4694F2008EC9B1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		63AD43A31D46B292008EC9B1 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		63AD43A41D46B292008EC9B1 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Carthage/Build/iOS/Parse.framework; sourceTree = "<group>"; };
+		63C541751D4908980064C8D7 /* AnagramFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnagramFinder.h; sourceTree = "<group>"; };
+		63C541761D4908980064C8D7 /* AnagramFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnagramFinder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +105,8 @@
 				63A0FE941D47E02A0013662E /* DetailViewController.m */,
 				63A0FE901D47CE050013662E /* LocationController.h */,
 				63A0FE911D47CE050013662E /* LocationController.m */,
+				63C541751D4908980064C8D7 /* AnagramFinder.h */,
+				63C541761D4908980064C8D7 /* AnagramFinder.m */,
 				63AD43961D468337008EC9B1 /* Assets.xcassets */,
 				63AD43901D468337008EC9B1 /* Main.storyboard */,
 				63AD43981D468337008EC9B1 /* LaunchScreen.storyboard */,
@@ -199,6 +204,7 @@
 				63A0FE921D47CE050013662E /* LocationController.m in Sources */,
 				63AD43951D468337008EC9B1 /* locationReminders.xcdatamodeld in Sources */,
 				63AD438F1D468337008EC9B1 /* ViewController.m in Sources */,
+				63C541771D4908980064C8D7 /* AnagramFinder.m in Sources */,
 				63AD438C1D468337008EC9B1 /* AppDelegate.m in Sources */,
 				63AD43891D468336008EC9B1 /* main.m in Sources */,
 				63A0FE951D47E02A0013662E /* DetailViewController.m in Sources */,
