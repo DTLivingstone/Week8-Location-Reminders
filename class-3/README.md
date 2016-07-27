@@ -1,6 +1,5 @@
 #Week 7 - Class 3:
 ##Lab Assignment
-* Modify your LocationController to monitor regions  
 * Add the ability to sign up and login to your app
 * Add a model class for your reminder by subclassing PFObject.
 * Add a visual map annotation wherever a reminder is added.
