@@ -16,35 +16,35 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bgs-7s-M70">
-                                <rect key="frame" x="20" y="60" width="560" height="480"/>
+                                <rect key="frame" x="16" y="67" width="343" height="533"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="wPT-ZV-210" appends="YES" id="k60-Yo-HPR"/>
                                 </connections>
                             </mapView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="XG6-91-475">
-                                <rect key="frame" x="20" y="562" width="560" height="30"/>
+                                <rect key="frame" x="16" y="622" width="343" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAO-Cw-Rzt">
-                                        <rect key="frame" x="0.0" y="0.0" width="187" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="114" height="30"/>
                                         <state key="normal" title="Weed"/>
                                         <connections>
                                             <action selector="firstLocationButtonPresssed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XG6-PK-lCF"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oju-Tp-41W">
-                                        <rect key="frame" x="187" y="0.0" width="186" height="30"/>
+                                        <rect key="frame" x="114" y="0.0" width="115" height="30"/>
                                         <state key="normal" title="Sandwich"/>
                                         <connections>
                                             <action selector="secondLocationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xom-fA-GWQ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oB-m3-7xU">
-                                        <rect key="frame" x="373" y="0.0" width="187" height="30"/>
+                                        <rect key="frame" x="229" y="0.0" width="114" height="30"/>
                                         <state key="normal" title="Okay"/>
                                         <connections>
                                             <action selector="thirdLocationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W9Y-ZF-3Fo"/>
@@ -65,6 +65,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OrF-bj-5R9"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="mapView" destination="bgs-7s-M70" id="brH-Sk-0yN"/>
                         <segue destination="Hae-zQ-Cap" kind="show" identifier="DetailViewController" id="V9A-lT-ssr"/>
@@ -77,7 +78,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1100" y="394"/>
+            <point key="canvasLocation" x="851.5" y="393.5"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="Hq6-QQ-SbW">
@@ -88,23 +89,48 @@
                         <viewControllerLayoutGuide type="bottom" id="nNe-F2-PHS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uSb-xX-lKc">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rb9-bv-LPD">
-                                <rect key="frame" x="277" y="285" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="createReminderButtonSelected:" destination="Hae-zQ-Cap" eventType="touchUpInside" id="tU1-5k-zP6"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="bvB-7V-SsN">
+                                <rect key="frame" x="38" y="270" width="300" height="128"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reminder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oOf-VC-ErY">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Radius" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6X2-Yk-kGG">
+                                        <rect key="frame" x="0.0" y="49" width="300" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rb9-bv-LPD">
+                                        <rect key="frame" x="0.0" y="98" width="300" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="createReminderButtonSelected:" destination="Hae-zQ-Cap" eventType="touchUpInside" id="tU1-5k-zP6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bvB-7V-SsN" firstAttribute="centerX" secondItem="uSb-xX-lKc" secondAttribute="centerX" id="CaV-lK-ab5"/>
+                            <constraint firstItem="bvB-7V-SsN" firstAttribute="centerY" secondItem="uSb-xX-lKc" secondAttribute="centerY" id="ODx-O1-Yfl"/>
+                            <constraint firstItem="bvB-7V-SsN" firstAttribute="width" secondItem="uSb-xX-lKc" secondAttribute="width" multiplier="0.8" id="rQ5-cW-4Le"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="radiusText" destination="6X2-Yk-kGG" id="KXK-Fw-F0t"/>
+                        <outlet property="reminderText" destination="oOf-VC-ErY" id="N5S-4K-h6h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gne-aP-bwM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1803" y="394"/>
+            <point key="canvasLocation" x="1297.5" y="393.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GRc-7G-W9c">

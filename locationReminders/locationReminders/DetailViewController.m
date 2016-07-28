@@ -12,6 +12,9 @@
 @interface DetailViewController ()
 
 - (IBAction)createReminderButtonSelected:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UITextField *reminderText;
+
+@property (weak, nonatomic) IBOutlet UITextField *radiusText;
 
 @end
 
@@ -22,8 +25,6 @@
     
     NSLog(@"title: %@", self.annotationTitle);
     NSLog(@"Coordinate: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
-    
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"TestNotification" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,13 +33,15 @@
 }
 
 - (IBAction)createReminderButtonSelected:(UIButton *)sender {
-    NSString *reminderName = @"Test Reminder";
-    NSNumber *radius = [NSNumber numberWithFloat:100.0];
+    NSString *reminderName = _reminderText.text;
+    NSNumber *radius = [NSNumber numberWithFloat:_radiusText.text.floatValue];
     
     Reminder *reminder = [Reminder object];
     
     reminder.name = reminderName;
     reminder.radius = radius;
+    
+//    NSLog(@"New reminder: %@, %@ ", reminder.name, reminder.radius);
     
     reminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
     

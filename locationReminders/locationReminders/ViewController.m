@@ -7,15 +7,16 @@
 //
 
 #import "ViewController.h"
-#import <Parse/Parse.h>
 #import "LocationController.h"
 #import "DetailViewController.h"
 #import "AnagramFinder.h"
 #import "StringSum.h"
 
+@import Parse;
+@import ParseUI;
 @import MapKit;
 
-@interface ViewController ()<MKMapViewDelegate, LocationControllerDelegate>
+@interface ViewController ()<MKMapViewDelegate, LocationControllerDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
@@ -33,13 +34,13 @@
     [stringSum sumString:@"1337 5CR1PT K1DD135"];
     [stringSum sumString:@"ABC, easy as 123"];
     [stringSum sumString:@"James Bond, 007"];
-    [stringSum sumString:@"Shaggy 2 Dope"];
     [stringSum sumString:@"deadmau5"];
-    [stringSum sumString:@""];
+    [stringSum sumString:@"Beyoncé"];
     
     [self.mapView.layer setCornerRadius:20.0];
     [self.mapView setDelegate: self];
     [self.mapView setShowsUserLocation:YES];
+    [self login];
     
     //    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
     //
@@ -116,7 +117,7 @@
 }
 
 - (void)dealloc {
-    //    [[NSNotificationCenter defaultCenter]dealloc];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"TestNotification" object:nil];
 }
 
 - (MKPinAnnotationView *)colorRandomizer:(MKPinAnnotationView *)point {
@@ -189,7 +190,7 @@
 
 #pragma MARK MapViewDelegate
 
--(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
@@ -222,18 +223,17 @@
             detailViewController.coordinate = annotationView.annotation.coordinate;
             
             __weak typeof(self) weakSelf = self;
-            
-            detailViewController.completion = ^(MKCircle *circle) {
-//                __strong typeof(weakSelf) strongSelf = weakSelf;
-                
+            detailViewController.completion = ^(MKCircle *circle)
+            {
+                __strong typeof(weakSelf) strongSelf = weakSelf;
                 [weakSelf.mapView removeAnnotation:annotationView.annotation];
-                [weakSelf.mapView addOverlay:circle];
+                [strongSelf.mapView addOverlay:circle];
             };
         }
     }
 }
 
--(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     [self performSegueWithIdentifier:@"DetailViewController" sender:view];
 }
 
@@ -242,10 +242,43 @@
     circleRenderer.strokeColor = [UIColor blueColor];
     circleRenderer.fillColor = [UIColor redColor];
     
-    circleRenderer.alpha = 0.5;
+    circleRenderer.alpha = 0.2;
     
     return circleRenderer;
+}
+
+- (void)login {
+    if (![PFUser currentUser])
+    {
+        PFLogInViewController *loginViewController = [[PFLogInViewController alloc]init];
+        
+        loginViewController.delegate = self;
+        loginViewController.signUpController.delegate = self;
+        [self presentViewController:loginViewController animated:YES completion:nil];
+    } else {
+        [self setupAdditionalUI];
+    }
+}
+
+- (void)setupAdditionalUI {
+    UIBarButtonItem *signOutButton = [[UIBarButtonItem alloc]initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(signOut)];
     
+    self.navigationItem.leftBarButtonItem = signOutButton;
+}
+
+- (void)signOut {
+    [PFUser logOut];
+    [self login];
+}
+
+- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self setupAdditionalUI];
+}
+
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self setupAdditionalUI];
 }
 
 @end

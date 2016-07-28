@@ -8,7 +8,7 @@
 
 #import <Parse/Parse.h>
 
-@interface Reminder : PFObject
+@interface Reminder : PFObject <PFSubclassing>
 
 @property(strong, nonatomic)NSString *name;
 @property(strong, nonatomic)NSNumber *radius;
