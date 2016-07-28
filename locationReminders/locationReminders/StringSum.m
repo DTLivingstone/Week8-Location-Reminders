@@ -20,7 +20,7 @@
         accumulator += charInt;
     }
     
-//    NSLog(@"Sum of individual numerals in '%@': %d", inputString, accumulator);
+    NSLog(@"Sum of individual numerals in '%@': %d", inputString, accumulator);
     
     return accumulator;
 }
