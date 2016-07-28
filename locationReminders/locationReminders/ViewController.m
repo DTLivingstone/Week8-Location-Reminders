@@ -11,6 +11,7 @@
 #import "LocationController.h"
 #import "DetailViewController.h"
 #import "AnagramFinder.h"
+#import "StringSum.h"
 
 @import MapKit;
 
@@ -27,48 +28,57 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    StringSum *stringSum = [[StringSum alloc]init];
+    
+    [stringSum sumString:@"1337 5CR1PT K1DD135"];
+    [stringSum sumString:@"ABC, easy as 123"];
+    [stringSum sumString:@"James Bond, 007"];
+    [stringSum sumString:@"Shaggy 2 Dope"];
+    [stringSum sumString:@"deadmau5"];
+    [stringSum sumString:@""];
+    
     [self.mapView.layer setCornerRadius:20.0];
     [self.mapView setDelegate: self];
     [self.mapView setShowsUserLocation:YES];
     
-//    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-//    
-//    testObject[@"foo"] = @"bar";
-//    
-//    [testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//        NSLog(@"Succeeded: %i, Error: %@", succeeded, error);
-//    }];
-//    
-//    PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
-//    
-//    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-//        if (!error) {
-//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                NSLog(@"Objects: %@", objects);
-//            }];
-//        }
-//    }];
+    //    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+    //
+    //    testObject[@"foo"] = @"bar";
+    //
+    //    [testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+    //        NSLog(@"Succeeded: %i, Error: %@", succeeded, error);
+    //    }];
+    //
+    //    PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
+    //
+    //    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+    //        if (!error) {
+    //            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    //                NSLog(@"Objects: %@", objects);
+    //            }];
+    //        }
+    //    }];
     
-//    NSArray *spaceship = @[@"foo", @12.3, @213.2];
-//    NSArray *garage = @[@"foo", @12.3, @213.2];
-//    NSArray *moscone = @[@"foo", @12.3, @213.2];
-//    NSArray *bill_graham = @[@"foo", @12.3, @213.2];
-//    NSArray *hq = @[@"foo", @12.3, @213.2];
-//    
-//    NSMutableArray *preloadedAnnotations;
-//    
-//    [preloadedAnnotations addObject:spaceship];
-//    [preloadedAnnotations addObject:garage];
-//    [preloadedAnnotations addObject:moscone];
-//    [preloadedAnnotations addObject:bill_graham];
-//    [preloadedAnnotations addObject:hq];
+    //    NSArray *spaceship = @[@"foo", @12.3, @213.2];
+    //    NSArray *garage = @[@"foo", @12.3, @213.2];
+    //    NSArray *moscone = @[@"foo", @12.3, @213.2];
+    //    NSArray *bill_graham = @[@"foo", @12.3, @213.2];
+    //    NSArray *hq = @[@"foo", @12.3, @213.2];
+    //
+    //    NSMutableArray *preloadedAnnotations;
+    //
+    //    [preloadedAnnotations addObject:spaceship];
+    //    [preloadedAnnotations addObject:garage];
+    //    [preloadedAnnotations addObject:moscone];
+    //    [preloadedAnnotations addObject:bill_graham];
+    //    [preloadedAnnotations addObject:hq];
     
-    CLLocationCoordinate2D coordinate0 = CLLocationCoordinate2DMake(41.5, -70.492);
-    CLLocationCoordinate2D coordinate1 = CLLocationCoordinate2DMake(41.4, -70.493);
-    CLLocationCoordinate2D coordinate2 = CLLocationCoordinate2DMake(41.6, -70.494);
-    CLLocationCoordinate2D coordinate3 = CLLocationCoordinate2DMake(41.8, -70.495);
-    CLLocationCoordinate2D coordinate4 = CLLocationCoordinate2DMake(41.2, -70.496);
-
+    CLLocationCoordinate2D coordinate0 = CLLocationCoordinate2DMake(37.334806, -122.009007);
+    CLLocationCoordinate2D coordinate1 = CLLocationCoordinate2DMake(37.340288, -122.068880);
+    CLLocationCoordinate2D coordinate2 = CLLocationCoordinate2DMake(37.783424, -122.400910);
+    CLLocationCoordinate2D coordinate3 = CLLocationCoordinate2DMake(37.777724, -122.417330);
+    CLLocationCoordinate2D coordinate4 = CLLocationCoordinate2DMake(37.331692, -122.030751);
+    
     MKPointAnnotation *newPoint0 = [[MKPointAnnotation alloc]init];
     MKPointAnnotation *newPoint1 = [[MKPointAnnotation alloc]init];
     MKPointAnnotation *newPoint2 = [[MKPointAnnotation alloc]init];
@@ -86,16 +96,12 @@
     newPoint2.coordinate = coordinate2;
     newPoint3.coordinate = coordinate3;
     newPoint4.coordinate = coordinate4;
-
+    
     [self.mapView addAnnotation:newPoint0];
     [self.mapView addAnnotation:newPoint1];
     [self.mapView addAnnotation:newPoint2];
     [self.mapView addAnnotation:newPoint3];
     [self.mapView addAnnotation:newPoint4];
-    
-    AnagramFinder *anagramFinder = [[AnagramFinder alloc]init];
-    [anagramFinder isAnagram:@"break" string2:@"brake"];
-    [anagramFinder isAnagram:@"break" string2:@"smash"];
     
 }
 
@@ -105,8 +111,13 @@
     [[LocationController sharedController]setDelegate:self];
     
     [[[LocationController sharedController]locationManager]startUpdatingLocation];
+    
+    //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(testObserverFired) name:@"TestNotification" object:nil];
 }
 
+- (void)dealloc {
+    //    [[NSNotificationCenter defaultCenter]dealloc];
+}
 
 - (MKPinAnnotationView *)colorRandomizer:(MKPinAnnotationView *)point {
     point.animatesDrop = YES;
@@ -209,12 +220,32 @@
             
             detailViewController.annotationTitle = annotationView.annotation.title;
             detailViewController.coordinate = annotationView.annotation.coordinate;
+            
+            __weak typeof(self) weakSelf = self;
+            
+            detailViewController.completion = ^(MKCircle *circle) {
+//                __strong typeof(weakSelf) strongSelf = weakSelf;
+                
+                [weakSelf.mapView removeAnnotation:annotationView.annotation];
+                [weakSelf.mapView addOverlay:circle];
+            };
         }
     }
 }
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     [self performSegueWithIdentifier:@"DetailViewController" sender:view];
+}
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    MKCircleRenderer *circleRenderer = [[MKCircleRenderer alloc]initWithOverlay:overlay];
+    circleRenderer.strokeColor = [UIColor blueColor];
+    circleRenderer.fillColor = [UIColor redColor];
+    
+    circleRenderer.alpha = 0.5;
+    
+    return circleRenderer;
+    
 }
 
 @end

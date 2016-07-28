@@ -21,7 +21,11 @@
 		63AD43A61D46B292008EC9B1 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63AD43A41D46B292008EC9B1 /* Parse.framework */; };
 		63AD43A81D46B2AD008EC9B1 /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 63AD43A31D46B292008EC9B1 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63AD43A91D46B2AD008EC9B1 /* Parse.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 63AD43A41D46B292008EC9B1 /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63B320B71D492BF700045B74 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B320B61D492BF700045B74 /* ParseUI.framework */; };
+		63B320B91D492C4800045B74 /* ParseUI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 63B320B81D492C4800045B74 /* ParseUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63B320BC1D49308B00045B74 /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B320BB1D49308B00045B74 /* Reminder.m */; };
 		63C541771D4908980064C8D7 /* AnagramFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C541761D4908980064C8D7 /* AnagramFinder.m */; };
+		63FAFAAE1D494C620005FBF5 /* StringSum.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FAFAAD1D494C620005FBF5 /* StringSum.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +35,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				63B320B91D492C4800045B74 /* ParseUI.framework in CopyFiles */,
 				63AD43A81D46B2AD008EC9B1 /* Bolts.framework in CopyFiles */,
 				63AD43A91D46B2AD008EC9B1 /* Parse.framework in CopyFiles */,
 			);
@@ -57,8 +62,14 @@
 		63AD43A11D4694F2008EC9B1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		63AD43A31D46B292008EC9B1 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		63AD43A41D46B292008EC9B1 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Carthage/Build/iOS/Parse.framework; sourceTree = "<group>"; };
+		63B320B61D492BF700045B74 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		63B320B81D492C4800045B74 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		63B320BA1D49308B00045B74 /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
+		63B320BB1D49308B00045B74 /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminder.m; sourceTree = "<group>"; };
 		63C541751D4908980064C8D7 /* AnagramFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnagramFinder.h; sourceTree = "<group>"; };
 		63C541761D4908980064C8D7 /* AnagramFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnagramFinder.m; sourceTree = "<group>"; };
+		63FAFAAC1D494C620005FBF5 /* StringSum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringSum.h; sourceTree = "<group>"; };
+		63FAFAAD1D494C620005FBF5 /* StringSum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringSum.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +79,7 @@
 			files = (
 				63AD43A51D46B292008EC9B1 /* Bolts.framework in Frameworks */,
 				63AD43A61D46B292008EC9B1 /* Parse.framework in Frameworks */,
+				63B320B71D492BF700045B74 /* ParseUI.framework in Frameworks */,
 				63AD43A21D4694F2008EC9B1 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,9 +90,11 @@
 		63AD437B1D468336008EC9B1 = {
 			isa = PBXGroup;
 			children = (
+				63B320B81D492C4800045B74 /* ParseUI.framework */,
 				63AD43A31D46B292008EC9B1 /* Bolts.framework */,
 				63AD43A41D46B292008EC9B1 /* Parse.framework */,
 				63AD43A11D4694F2008EC9B1 /* MapKit.framework */,
+				63B320B61D492BF700045B74 /* ParseUI.framework */,
 				63AD43861D468336008EC9B1 /* locationReminders */,
 				63AD43851D468336008EC9B1 /* Products */,
 			);
@@ -97,6 +111,7 @@
 		63AD43861D468336008EC9B1 /* locationReminders */ = {
 			isa = PBXGroup;
 			children = (
+				63FAFAAB1D494BF60005FBF5 /* Code Challenges */,
 				63AD438A1D468336008EC9B1 /* AppDelegate.h */,
 				63AD438B1D468337008EC9B1 /* AppDelegate.m */,
 				63AD438D1D468337008EC9B1 /* ViewController.h */,
@@ -105,8 +120,8 @@
 				63A0FE941D47E02A0013662E /* DetailViewController.m */,
 				63A0FE901D47CE050013662E /* LocationController.h */,
 				63A0FE911D47CE050013662E /* LocationController.m */,
-				63C541751D4908980064C8D7 /* AnagramFinder.h */,
-				63C541761D4908980064C8D7 /* AnagramFinder.m */,
+				63B320BA1D49308B00045B74 /* Reminder.h */,
+				63B320BB1D49308B00045B74 /* Reminder.m */,
 				63AD43961D468337008EC9B1 /* Assets.xcassets */,
 				63AD43901D468337008EC9B1 /* Main.storyboard */,
 				63AD43981D468337008EC9B1 /* LaunchScreen.storyboard */,
@@ -123,6 +138,17 @@
 				63AD43881D468336008EC9B1 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		63FAFAAB1D494BF60005FBF5 /* Code Challenges */ = {
+			isa = PBXGroup;
+			children = (
+				63C541751D4908980064C8D7 /* AnagramFinder.h */,
+				63C541761D4908980064C8D7 /* AnagramFinder.m */,
+				63FAFAAC1D494C620005FBF5 /* StringSum.h */,
+				63FAFAAD1D494C620005FBF5 /* StringSum.m */,
+			);
+			name = "Code Challenges";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,7 +229,9 @@
 			files = (
 				63A0FE921D47CE050013662E /* LocationController.m in Sources */,
 				63AD43951D468337008EC9B1 /* locationReminders.xcdatamodeld in Sources */,
+				63FAFAAE1D494C620005FBF5 /* StringSum.m in Sources */,
 				63AD438F1D468337008EC9B1 /* ViewController.m in Sources */,
+				63B320BC1D49308B00045B74 /* Reminder.m in Sources */,
 				63C541771D4908980064C8D7 /* AnagramFinder.m in Sources */,
 				63AD438C1D468337008EC9B1 /* AppDelegate.m in Sources */,
 				63AD43891D468336008EC9B1 /* main.m in Sources */,
@@ -324,6 +352,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = locationReminders/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -339,6 +368,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = locationReminders/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
