@@ -25,6 +25,8 @@
         configuration.server = @"https://location-reminders-server-dtl.herokuapp.com/parse";
     }]];
     
+    [self registerForNotification];
+    
     return YES;
 }
 
@@ -115,6 +117,12 @@
     _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     return _managedObjectContext;
+}
+
+- (void)registerForNotification {
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeAlert | UIUserNotificationTypeSound categories:nil];
+    
+    [[UIApplication sharedApplication]registerUserNotificationSettings:settings];
 }
 
 #pragma mark - Core Data Saving support

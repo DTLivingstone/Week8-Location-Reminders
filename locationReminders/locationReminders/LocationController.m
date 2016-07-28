@@ -6,9 +6,10 @@
 //  Copyright © 2016 David Livingstone. All rights reserved.
 //
 
-#import "LocationController.h"
+@import UIKit;
+@import CoreLocation;
 
-@interface LocationController ()<CLLocationManagerDelegate>
+@interface LocationController () <CLLocationManagerDelegate>
 
 @end
 
@@ -44,6 +45,18 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     [self.delegate locationControllerDidUpdateLocation:locations.lastObject];
     [self setLocation:locations.lastObject];
+}
+
+- (void)locationManager:([(CLLocationManager *)manager didEnterRegion:(CLRegion *)region]) {
+    
+    NSLog(@"User did enter region");
+    
+    UILocalNotification *notification = [[UILocalNotification alloc]init];
+    
+    notification.alertTitle = @"You have entered";
+    notification.alertBody = @"The PokémonGo";
+    
+    [[UIApplication sharedApplication]presetLocalNotificationNow:notification];
 }
      
 @end
