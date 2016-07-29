@@ -11,7 +11,7 @@
 #import "DetailViewController.h"
 #import "AnagramFinder.h"
 #import "StringSum.h"
-
+#import "Reminder.h"
 @import Parse;
 @import ParseUI;
 @import MapKit;
@@ -28,14 +28,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    StringSum *stringSum = [[StringSum alloc]init];
-    
-    [stringSum sumString:@"1337 5CR1PT K1DD135"];
-    [stringSum sumString:@"ABC, easy as 123"];
-    [stringSum sumString:@"James Bond, 007"];
-    [stringSum sumString:@"deadmau5"];
-    [stringSum sumString:@"Beyoncé"];
     
     [self.mapView.layer setCornerRadius:20.0];
     [self.mapView setDelegate: self];
@@ -104,6 +96,34 @@
     [self.mapView addAnnotation:newPoint3];
     [self.mapView addAnnotation:newPoint4];
     
+    [self fetchAllReminders];
+}
+
+- (NSMutableArray <Reminder *>*)fetchAllReminders {
+    NSMutableArray *reminders = [[NSMutableArray alloc]init];
+    PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error) {
+            __weak typeof (self) weakSelf = self;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [reminders addObjectsFromArray:objects];
+                for (Reminder* reminder in objects) {
+                    __weak typeof (self) strongSelf = weakSelf;
+                    [strongSelf addReminder:reminder];
+                }
+            }];
+        }
+    }];
+    return reminders;
+}
+
+- (void)addReminder:(Reminder *)reminder {
+    if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+        CLCircularRegion *circularRegion = [[CLCircularRegion alloc]initWithCenter:CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude) radius:reminder.radius.floatValue identifier:reminder.name];
+        [[LocationController sharedController].locationManager startMonitoringForRegion:circularRegion];
+        MKCircle *circleOverlay = [MKCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude) radius:reminder.radius.floatValue];
+        [self.mapView addOverlay:circleOverlay];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

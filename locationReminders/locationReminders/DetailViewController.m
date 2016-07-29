@@ -65,6 +65,7 @@
             
                 
             strongSelf.completion([MKCircle circleWithCenterCoordinate:strongSelf.coordinate radius:radius.floatValue]);
+            [strongSelf.navigationController popViewControllerAnimated:YES];
             }
         }
         
