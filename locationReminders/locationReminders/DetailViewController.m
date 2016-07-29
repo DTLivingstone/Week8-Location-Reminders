@@ -15,13 +15,13 @@
 @interface DetailViewController ()
 
 - (IBAction)createReminderButtonSelected:(UIButton *)sender;
-@property (weak, nonatomic) IBOutlet UITextField *reminderText;
 
+@property (weak, nonatomic) IBOutlet UITextField *reminderText;
 @property (weak, nonatomic) IBOutlet UITextField *radiusText;
 
 @end
 
-@implementation DetailViewController
+@implementation DetailViewController //
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,14 +60,14 @@
         
         if (strongSelf.completion) {
             if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
-                CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:strongSelf.coordinate radius:radius.floatValue identifier:reminderName];
-            }
-            [[[CLLocationManager sharedController]locationmManager]startMonitoringForRegion:region];
+                CLCircularRegion *circularRegion = [[CLCircularRegion alloc]initWithCenter:strongSelf.coordinate radius:radius.floatValue identifier:reminderName];
+            [[LocationController sharedController].locationManager startMonitoringForRegion:circularRegion];
             
+                
             strongSelf.completion([MKCircle circleWithCenterCoordinate:strongSelf.coordinate radius:radius.floatValue]);
+            }
         }
         
     }];
-    //    }
 }
 @end
